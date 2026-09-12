@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>403 - {{ config('app.name') }}</title>
+    <title>Access Denied - {{ config('app.name') }}</title>
     @vite(['resources/css/app.css'])
 </head>
-<body class="font-sans antialiased bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="font-sans antialiased bg-gray-50 flex items-center justify-center min-h-screen">
     <div class="text-center">
-        <h1 class="text-7xl font-bold text-gray-300">403</h1>
-        <p class="text-xl text-gray-600 mt-4">You don't have permission to access this page.</p>
-        <a href="{{ url('/') }}" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium">Go Home</a>
+        <div class="text-8xl font-black text-gray-200 mb-4">403</div>
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
+        <p class="text-gray-500 mb-8 max-w-md">Sorry, you don't have permission to access this page.</p>
+        <a href="{{ url('/') }}" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-xl font-semibold transition shadow-sm inline-block">Go Home</a>
     </div>
 </body>
 </html>

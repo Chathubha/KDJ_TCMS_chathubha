@@ -51,6 +51,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('grades/{exam}/store', [\App\Http\Controllers\GradeController::class, 'storeGrades'])->name('grades.store-grades');
     Route::get('grades/{student}/report-card', [\App\Http\Controllers\GradeController::class, 'reportCard'])->name('grades.report-card');
 
+    // Fees
+    Route::resource('fees', \App\Http\Controllers\FeeController::class)->except(['show']);
+    Route::get('fees/{id}', [\App\Http\Controllers\FeeController::class, 'show'])->name('fees.show');
+    Route::post('fees/{id}/payment', [\App\Http\Controllers\FeeController::class, 'storePayment'])->name('fees.payments.store');
+    Route::delete('fees/{feeId}/payment/{paymentId}', [\App\Http\Controllers\FeeController::class, 'destroyPayment'])->name('fees.payments.destroy');
+    Route::get('students/{studentId}/fees', [\App\Http\Controllers\FeeController::class, 'studentFees'])->name('fees.student');
+
     // Search
     Route::get('search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search');
 });
