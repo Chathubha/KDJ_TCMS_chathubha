@@ -1,41 +1,43 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800">Subject: {{ $subject->name }}</h2>
+        <h2 class="text-2xl font-bold text-gray-900">Subject Details</h2>
     </x-slot>
 
-    <div class="space-y-6">
-        <div class="bg-white rounded-lg shadow p-6">
-            <div class="grid grid-cols-2 gap-6">
+    <div class="max-w-2xl space-y-6">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                    <p class="text-sm text-gray-500">Name</p>
-                    <p class="font-medium">{{ $subject->name }}</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Subject Name</p>
+                    <p class="text-sm font-semibold text-gray-900">{{ $subject->name }}</p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">Code</p>
-                    <p class="font-medium">{{ $subject->code }}</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Code</p>
+                    <p class="text-sm font-semibold text-gray-900">{{ $subject->code }}</p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">Class</p>
-                    <p class="font-medium">{{ $subject->classroom->name ?? '-' }}-{{ $subject->classroom->section ?? '' }}</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Class</p>
+                    <p class="text-sm font-semibold text-gray-900">{{ $subject->classroom->name ?? '-' }}-{{ $subject->classroom->section ?? '' }}</p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">Description</p>
-                    <p class="font-medium">{{ $subject->description ?? '-' }}</p>
-                </div>
-                <div class="col-span-2">
-                    <p class="text-sm text-gray-500">Assigned Teachers</p>
-                    <div class="flex flex-wrap gap-2 mt-1">
-                        @forelse($subject->teachers as $teacher)
-                            <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">{{ $teacher->full_name }}</span>
-                        @empty
-                            <span class="text-gray-400">No teachers assigned</span>
-                        @endforelse
-                    </div>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Description</p>
+                    <p class="text-sm font-semibold text-gray-900">{{ $subject->description ?? '-' }}</p>
                 </div>
             </div>
-            <div class="mt-6 flex space-x-3">
-                <a href="{{ route('subjects.edit', $subject) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm">Edit</a>
-                <a href="{{ route('subjects.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg text-sm">Back to List</a>
+
+            <div class="mt-6 pt-6 border-t border-gray-100">
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Assigned Teachers</p>
+                <div class="flex flex-wrap gap-2">
+                    @forelse($subject->teachers as $teacher)
+                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">{{ $teacher->full_name }}</span>
+                    @empty
+                        <span class="text-gray-400 text-sm">No teachers assigned</span>
+                    @endforelse
+                </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-100 flex justify-end space-x-3">
+                <a href="{{ route('subjects.edit', $subject) }}" class="bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl transition shadow-sm text-sm">Edit</a>
+                <a href="{{ route('subjects.index') }}" class="bg-white border-2 border-gray-200 text-gray-700 hover:bg-gray-50 font-semibold py-3 px-6 rounded-xl transition text-sm">Back to List</a>
             </div>
         </div>
     </div>
